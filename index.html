@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Медицинская клиника Sanare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: #f4f9fa;
+      color: #2d3748;
+      min-height: 100vh;
+      display: flex;
+      line-height: 1.6;
+    }
+
+    /* Sidebar */
+    aside {
+      width: 260px;
+      background: linear-gradient(180deg, #00c4b4, #007a6e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      position: fixed;
+      height: 100vh;
+      box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    aside h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      background-color: #ffffff20;
+      transform: translateX(5px);
+    }
+
+    /* Main Content */
+    main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 40px;
+      max-width: 1200px;
+      margin-right: auto;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: url('https://img.freepik.com/premium-photo/modern-hospital-building-exterior_1127-3193.jpg') no-repeat center/cover;
+      border-radius: 15px;
+      padding: 60px 40px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 76, 70, 0.65);
+      z-index: 1;
+    }
+
+    .hero h2, .hero p {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .hero a {
+      display: inline-block;
+      background-color: #00c4b4;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .hero a:hover {
+      background-color: #007a6e;
+    }
+
+    /* Clinic Info */
+    .clinic-info {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+    }
+
+    .clinic-info h2 {
+      color: #007a6e;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .clinic-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .clinic-info li {
+      padding: 10px 0;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .clinic-info li::before {
+      content: '✔';
+      color: #00c4b4;
+      font-weight: bold;
+    }
+
+    /* Services Section */
+    .services {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    .services h2 {
+      color: #007a6e;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .services ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .services li {
+      padding: 10px 0;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .services li::before {
+      content: '➤';
+      color: #00c4b4;
+      font-weight: bold;
+    }
+
+    /* Appointment Section */
+    .appointment {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+      max-width: 500px;
+    }
+
+    input, select {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      font-size: 16px;
+      width: 100%;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #00c4b4;
+      outline: none;
+    }
+
+    button {
+      background-color: #00c4b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #007a6e;
+    }
+
+    .success {
+      color: #28a745;
+      font-weight: 500;
+      margin-top: 15px;
+      display: none;
+    }
+
+    /* Doctors Section */
+    .doctors {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .doctor {
+      background-color: #e6f4f3;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .doctor:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .doctor img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .doctor h3 {
+      text-align: center;
+      color: #007a6e;
+      font-size: 20px;
+      margin: 15px 0 10px;
+    }
+
+    .doctor .details {
+      display: none;
+      background: white;
+      padding: 15px;
+      border-top: 1px solid #b2dfdb;
+      font-size: 14px;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+
+    .doctor.active .details {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Contact */
+    .contact a {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .contact a:hover {
+      background-color: #1da851;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+      color: #718096;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      aside {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 20px;
+      }
+
+      main {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .hero {
+        padding: 40px 20px;
+      }
+
+      .hero h2 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .doctors {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h1>Sanare</h1>
+    <nav>
+      <a href="#" class="active" onclick="showSection('home')">🏥 О клинике</a>
+      <a href="#" onclick="showSection('appointment')">🩺 Запись к врачу</a>
+      <a href="#" onclick="showSection('services')">🛠 Наши услуги</a>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <h2>Добро пожаловать в клинику «Sanare»</h2>
+      <p>Современный медицинский центр в городе Семей, предоставляющий высококачественные услуги для вашего здоровья.</p>
+    </section>
+
+    <!-- Clinic Info -->
+    <section id="clinic-info" class="clinic-info">
+      <h2>О клинике «Sanare»</h2>
+      <p>Клиника «Sanare» расположена по адресу: г. Семей, ул. Шакарима, 40. Мы предлагаем широкий спектр медицинских услуг, от профилактических осмотров до сложных диагностических процедур и лечения.</p>
+      <p>Наша команда состоит из высококвалифицированных специалистов с многолетним опытом. Мы используем современное оборудование и индивидуальный подход к каждому пациенту.</p>
+      <ul>
+        <li>Более 10 лет на рынке</li>
+        <li>Современные технологии и оборудование</li>
+        <li>Доброжелательный персонал</li>
+        <li>Онлайн-запись и консультации</li>
+      </ul>
+      <div class="contact">
+        <a href="https://wa.me/77758202327" target="_blank">💬 Связаться в WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <h2>Наши услуги</h2>
+      <p>Мы предоставляем полный спектр медицинских услуг для всей семьи. Наши специалисты готовы помочь вам в любой ситуации.</p>
+      <ul>
+        <li>Педиатрия: профилактика и лечение детских заболеваний</li>
+        <li>Отоларингология: диагностика и лечение ЛОР-заболеваний</li>
+        <li>Кардиология: профилактика и лечение сердечно-сосудистых заболеваний</li>
+        <li>Терапия: комплексное лечение внутренних заболеваний</li>
+        <li>Стоматология: лечение, реставрация и профилактика заболеваний зубов</li>
+        <li>Диагностика: УЗИ, ЭКГ, лабораторные исследования</li>
+      </ul>
+    </section>
+
+    <!-- Appointment Section -->
+    <section id="appointment" class="appointment">
+      <h2>Запись на приём</h2>
+      <form id="appointmentForm">
+        <select id="doctor" required>
+          <option value="">-- Выберите врача --</option>
+          <option value="Айгуль Тлеуханова (Педиатр)">Айгуль Тлеуханова (Педиатр)</option>
+          <option value="Ерлан Мухамедов (ЛОР)">Ерлан Мухамедов (ЛОР)</option>
+          <option value="Сауле Касымова (Кардиолог)">Сауле Касымова (Кардиолог)</option>
+          <option value="Азамат Алиев (Терапевт)">Азамат Алиев (Терапевт)</option>
+          <option value="Мария Иваненко (Стоматолог)">Мария Иваненко (Стоматолог)</option>
+        </select>
+        <input type="text" id="name" placeholder="Ваше имя" required>
+        <input type="tel" id="phone" placeholder="+7..." required>
+        <input type="date" id="date" required>
+        <input type="time" id="time" required>
+        <button type="submit">📅 Записаться</button>
+        <p class="success">✅ Ваша запись успешно отправлена!</p>
+      </form>
+
+      <div class="doctors">
+        <div class="doctor" onclick="toggleDoctor(this)">
+          <img src="пед.jpeg" alt="Педиатр">
+          <h3>Айгуль Тлеуханова</h3>
+          <div class="details">Педиатр с 8-летним опытом. Специализируется на лечении и профилактике детских заболеваний, уделяет внимание эмоциональному состоянию ребёнка.</div>
+        </div>
+        <div class="doctor" onclick="toggleDoctor(this)">
+          <img src="отолар.jpg" alt="ЛОР">
+          <h3>Ерлан Мухамедов</h3>
+          <div class="details">Врач-отоларинголог с 10-летней практикой. Диагностика и лечение заболеваний уха, горла и носа. Использует современные эндоскопические методы.</div>
+        </div>
+        <div class="doctor" onclick="toggleDoctor(this)">
+          <img src="кардио.jpeg" alt="Кардиолог">
+          <h3>Сауле Касымова</h3>
+          <div class="details">Кардиолог, кандидат медицинских наук. Занимается профилактикой и лечением сердечно-сосудистых заболеваний, проводит ЭКГ и стресс-тесты.</div>
+        </div>
+        <div class="doctor" onclick="toggleDoctor(this)">
+          <img src="терап.jpeg" alt="Терапевт">
+          <h3>Азамат Алиев</h3>
+          <div class="details">Терапевт общей практики. Ведёт приём пациентов с различными заболеваниями, подбирает индивидуальные программы лечения.</div>
+        </div>
+        <div class="doctor" onclick="toggleDoctor(this)">
+          <img src="стомат.jpeg" alt="Стоматолог">
+          <h3>Мария Иваненко</h3>
+          <div class="details">Стоматолог. Занимается лечением и эстетической реставрацией зубов, профессиональной чисткой и профилактикой кариеса.</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Медицинский центр «Sanare» — забота, внимание и профессионализм
+    </footer>
+  </main>
+
+  <script>
+    // Initialize section visibility on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('home');
+    });
+
+    function showSection(id) {
+      // Remove active class from all nav links
+      document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+      
+      // Add active class to clicked link
+      document.querySelector(`nav a[onclick="showSection('${id}')"]`).classList.add('active');
+      
+      // Hide all sections
+      document.querySelectorAll('main section').forEach(section => {
+        section.style.display = 'none';
+      });
+      
+      // Show the selected section
+      if (id === 'home') {
+        document.querySelector('.hero').style.display = 'block';
+        document.querySelector('.clinic-info').style.display = 'block';
+      } else {
+        document.getElementById(id).style.display = 'block';
+      }
+    }
+
+    function toggleDoctor(card) {
+      document.querySelectorAll('.doctor').forEach(doc => doc.classList.remove('active'));
+      card.classList.toggle('active');
+    }
+
+    document.getElementById('appointmentForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const success = document.querySelector('.success');
+      success.style.display = 'block';
+      setTimeout(() => success.style.display = 'none', 3000);
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
