@@ -70,14 +70,21 @@
     .hamburger {
       display: none;
       font-size: 24px;
-      background: none;
+      background: #00c4b4;
       border: none;
       color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
       cursor: pointer;
       position: fixed;
-      top: 20px;
-      left: 20px;
+      top: 15px;
+      left: 15px;
       z-index: 11;
+      transition: background 0.3s;
+    }
+
+    .hamburger:hover {
+      background: #007a6e;
     }
 
     /* Main Content */
@@ -224,10 +231,11 @@
       display: none;
     }
 
-    form {
+    .appointment-form {
       display: grid;
       gap: 12px;
       max-width: 100%;
+      margin-top: 10px;
     }
 
     input, select {
@@ -237,11 +245,35 @@
       font-size: 14px;
       width: 100%;
       transition: border-color 0.3s;
+      color: #2d3748;
+      background-color: #fff;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
     }
 
     input:focus, select:focus {
       border-color: #00c4b4;
       outline: none;
+    }
+
+    /* Style for date and time inputs */
+    input[type="date"], input[type="time"] {
+      color: #2d3748;
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+
+    input[type="date"]::-webkit-datetime-edit,
+    input[type="time"]::-webkit-datetime-edit {
+      color: #2d3748;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(20%) sepia(50%) saturate(200%) hue-rotate(160deg);
     }
 
     button {
@@ -414,6 +446,12 @@
         font-size: 13px;
         padding: 8px;
       }
+
+      input[type="date"], input[type="time"] {
+        font-size: 13px;
+        color: #2d3748;
+        background-color: #fff;
+      }
     }
   </style>
 </head>
@@ -469,48 +507,86 @@
     <!-- Appointment Section -->
     <section id="appointment" class="appointment">
       <h2>Запись на приём</h2>
-      <form id="appointmentForm">
-        <select id="doctor" required>
-          <option value="">-- Выберите врача --</option>
-          <option value="Айгуль Тлеуханова (Педиатр)">Айгуль Тлеуханова (Педиатр)</option>
-          <option value="Ерлан Мухамедов (ЛОР)">Ерлан Мухамедов (ЛОР)</option>
-          <option value="Сауле Касымова (Кардиолог)">Сауле Касымова (Кардиолог)</option>
-          <option value="Азамат Алиев (Терапевт)">Азамат Алиев (Терапевт)</option>
-          <option value="Мария Иваненко (Стоматолог)">Мария Иваненко (Стоматолог)</option>
-        </select>
-        <input type="text" id="name" placeholder="Ваше имя" required>
-        <input type="tel" id="phone" placeholder="+7..." required>
-        <input type="date" id="date" required>
-        <input type="time" id="time" required>
-        <button type="submit">📅 Записаться</button>
-        <p class="success">✅ Ваша запись успешно отправлена!</p>
-      </form>
-
       <div class="doctors">
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="https://img.freepik.com/free-photo/female-pediatrician-smiling_23-2149183701.jpg" alt="Педиатр">
+          <img src="пед.jpeg" alt="Педиатр">
           <h3>Айгуль Тлеуханова</h3>
-          <div class="details">Педиатр с 8-летним опытом. Специализируется на лечении и профилактике детских заболеваний, уделяет внимание эмоциональному состоянию ребёнка.</div>
+          <div class="details">
+            <p>Педиатр с 8-летним опытом. Специализируется на лечении и профилактике детских заболеваний, уделяет внимание эмоциональному состоянию ребёнка.</p>
+            <form class="appointment-form">
+              <input type="hidden" name="doctor" value="Айгуль Тлеуханова (Педиатр)">
+              <input type="text" placeholder="Ваше имя" required>
+              <input type="tel" placeholder="+7..." required>
+              <input type="date" required>
+              <input type="time" required>
+              <button type="submit">📅 Записаться</button>
+              <p class="success">✅ Ваша запись успешно отправлена!</p>
+            </form>
+          </div>
         </div>
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="https://img.freepik.com/free-photo/ent-doctor-holding-otoscope_23-2149337633.jpg" alt="ЛОР">
+          <img src="отолар.jpeg" alt="ЛОР">
           <h3>Ерлан Мухамедов</h3>
-          <div class="details">Врач-отоларинголог с 10-летней практикой. Диагностика и лечение заболеваний уха, горла и носа. Использует современные эндоскопические методы.</div>
+          <div class="details">
+            <p>Врач-отоларинголог с 10-летней практикой. Диагностика и лечение заболеваний уха, горла и носа. Использует современные эндоскопические методы.</p>
+            <form class="appointment-form">
+              <input type="hidden" name="doctor" value="Ерлан Мухамедов (ЛОР)">
+              <input type="text" placeholder="Ваше имя" required>
+              <input type="tel" placeholder="+7..." required>
+              <input type="date" required>
+              <input type="time" required>
+              <button type="submit">📅 Записаться</button>
+              <p class="success">✅ Ваша запись успешно отправлена!</p>
+            </form>
+          </div>
         </div>
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="https://img.freepik.com/free-photo/cardiologist-with-stethoscope_23-2148978271.jpg" alt="Кардиолог">
+          <img src="кардио.jpeg" alt="Кардиолог">
           <h3>Сауле Касымова</h3>
-          <div class="details">Кардиолог, кандидат медицинских наук. Занимается профилактикой и лечением сердечно-сосудистых заболеваний, проводит ЭКГ и стресс-тесты.</div>
+          <div class="details">
+            <p>Кардиолог, кандидат медицинских наук. Занимается профилактикой и лечением сердечно-сосудистых заболеваний, проводит ЭКГ и стресс-тесты.</p>
+            <form class="appointment-form">
+              <input type="hidden" name="doctor" value="Сауле Касымова (Кардиолог)">
+              <input type="text" placeholder="Ваше имя" required>
+              <input type="tel" placeholder="+7..." required>
+              <input type="date" required>
+              <input type="time" required>
+              <button type="submit">📅 Записаться</button>
+              <p class="success">✅ Ваша запись успешно отправлена!</p>
+            </form>
+          </div>
         </div>
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="https://img.freepik.com/free-photo/portrait-smiling-doctor-office_23-2147846662.jpg" alt="Терапевт">
+          <img src="терап.jpeg" alt="Терапевт">
           <h3>Азамат Алиев</h3>
-          <div class="details">Терапевт общей практики. Ведёт приём пациентов с различными заболеваниями, подбирает индивидуальные программы лечения.</div>
+          <div class="details">
+            <p>Терапевт общей практики. Ведёт приём пациентов с различными заболеваниями, подбирает индивидуальные программы лечения.</p>
+            <form class="appointment-form">
+              <input type="hidden" name="doctor" value="Азамат Алиев (Терапевт)">
+              <input type="text" placeholder="Ваше имя" required>
+              <input type="tel" placeholder="+7..." required>
+              <input type="date" required>
+              <input type="time" required>
+              <button type="submit">📅 Записаться</button>
+              <p class="success">✅ Ваша запись успешно отправлена!</p>
+            </form>
+          </div>
         </div>
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="https://img.freepik.com/free-photo/dentist-office-with-female-doctor_23-2148970643.jpg" alt="Стоматолог">
+          <img src="стомат.jpeg" alt="Стоматолог">
           <h3>Мария Иваненко</h3>
-          <div class="details">Стоматолог. Занимается лечением и эстетической реставрацией зубов, профессиональной чисткой и профилактикой кариеса.</div>
+          <div class="details">
+            <p>Стоматолог. Занимается лечением и эстетической реставрацией зубов, профессиональной чисткой и профилактикой кариеса.</p>
+            <form class="appointment-form">
+              <input type="hidden" name="doctor" value="Мария Иваненко (Стоматолог)">
+              <input type="text" placeholder="Ваше имя" required>
+              <input type="tel" placeholder="+7..." required>
+              <input type="date" required>
+              <input type="time" required>
+              <button type="submit">📅 Записаться</button>
+              <p class="success">✅ Ваша запись успешно отправлена!</p>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -524,6 +600,16 @@
     // Initialize section visibility on page load
     document.addEventListener('DOMContentLoaded', () => {
       showSection('home');
+      // Add submit listeners to all forms
+      document.querySelectorAll('.appointment-form').forEach(form => {
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const success = form.querySelector('.success');
+          success.style.display = 'block';
+          setTimeout(() => success.style.display = 'none', 3000);
+          form.reset();
+        });
+      });
     });
 
     function showSection(id) {
@@ -549,17 +635,16 @@
     }
 
     function toggleDoctor(card) {
-      document.querySelectorAll('.doctor').forEach(doc => doc.classList.remove('active'));
-      card.classList.toggle('active');
+      // Check if the clicked card is already active
+      if (card.classList.contains('active')) {
+        // If active, remove the active class to collapse the description
+        card.classList.remove('active');
+      } else {
+        // If not active, remove active class from all cards and add to the clicked one
+        document.querySelectorAll('.doctor').forEach(doc => doc.classList.remove('active'));
+        card.classList.add('active');
+      }
     }
-
-    document.getElementById('appointmentForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const success = document.querySelector('.success');
-      success.style.display = 'block';
-      setTimeout(() => success.style.display = 'none', 3000);
-      e.target.reset();
-    });
   </script>
 </body>
 </html>
