@@ -18,6 +18,7 @@
       color: #2d3748;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       line-height: 1.6;
     }
 
@@ -29,19 +30,24 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px 20px;
+      padding: 20px;
       position: fixed;
       height: 100vh;
       box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
       z-index: 10;
+      transition: transform 0.3s ease;
     }
 
     aside h1 {
       font-size: 24px;
       font-weight: 700;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       text-align: center;
       letter-spacing: 1px;
+    }
+
+    nav {
+      width: 100%;
     }
 
     nav a {
@@ -51,7 +57,7 @@
       color: white;
       font-weight: 500;
       border-radius: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       transition: background 0.3s, transform 0.2s;
     }
 
@@ -60,13 +66,28 @@
       transform: translateX(5px);
     }
 
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 11;
+    }
+
     /* Main Content */
     main {
       margin-left: 260px;
       flex: 1;
-      padding: 40px;
+      padding: 30px;
       max-width: 1200px;
       margin-right: auto;
+      transition: margin-left 0.3s ease;
     }
 
     /* Hero Section */
@@ -74,11 +95,11 @@
       position: relative;
       background: url('https://img.freepik.com/premium-photo/modern-hospital-building-exterior_1127-3193.jpg') no-repeat center/cover;
       border-radius: 15px;
-      padding: 60px 40px;
+      padding: 50px 20px;
       color: white;
       text-align: center;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       overflow: hidden;
     }
 
@@ -99,22 +120,22 @@
     }
 
     .hero h2 {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .hero p {
-      font-size: 18px;
+      font-size: 16px;
       max-width: 600px;
-      margin: 0 auto 30px;
+      margin: 0 auto 20px;
     }
 
     .hero a {
       display: inline-block;
       background-color: #00c4b4;
       color: white;
-      padding: 12px 30px;
+      padding: 10px 25px;
       border-radius: 25px;
       text-decoration: none;
       font-weight: 600;
@@ -129,29 +150,29 @@
     .clinic-info {
       background: white;
       border-radius: 15px;
-      padding: 30px;
+      padding: 25px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .clinic-info h2 {
       color: #007a6e;
-      font-size: 28px;
+      font-size: 26px;
       margin-bottom: 15px;
     }
 
     .clinic-info ul {
       list-style: none;
       padding: 0;
-      margin: 20px 0;
+      margin: 15px 0;
     }
 
     .clinic-info li {
-      padding: 10px 0;
-      font-size: 16px;
+      padding: 8px 0;
+      font-size: 15px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .clinic-info li::before {
@@ -164,15 +185,15 @@
     .services {
       background: white;
       border-radius: 15px;
-      padding: 30px;
+      padding: 25px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       display: none;
     }
 
     .services h2 {
       color: #007a6e;
-      font-size: 28px;
-      margin-bottom: 20px;
+      font-size: 26px;
+      margin-bottom: 15px;
     }
 
     .services ul {
@@ -181,11 +202,11 @@
     }
 
     .services li {
-      padding: 10px 0;
-      font-size: 16px;
+      padding: 8px 0;
+      font-size: 15px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .services li::before {
@@ -198,22 +219,22 @@
     .appointment {
       background: white;
       border-radius: 15px;
-      padding: 30px;
+      padding: 25px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       display: none;
     }
 
     form {
       display: grid;
-      gap: 15px;
-      max-width: 500px;
+      gap: 12px;
+      max-width: 100%;
     }
 
     input, select {
-      padding: 12px;
+      padding: 10px;
       border-radius: 8px;
       border: 1px solid #e2e8f0;
-      font-size: 16px;
+      font-size: 14px;
       width: 100%;
       transition: border-color 0.3s;
     }
@@ -228,8 +249,8 @@
       color: white;
       border: none;
       border-radius: 8px;
-      padding: 12px;
-      font-size: 16px;
+      padding: 10px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.3s;
@@ -242,16 +263,17 @@
     .success {
       color: #28a745;
       font-weight: 500;
-      margin-top: 15px;
+      margin-top: 10px;
       display: none;
+      text-align: center;
     }
 
     /* Doctors Section */
     .doctors {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 25px;
     }
 
     .doctor {
@@ -270,23 +292,23 @@
 
     .doctor img {
       width: 100%;
-      height: 180px;
+      height: 160px;
       object-fit: cover;
     }
 
     .doctor h3 {
       text-align: center;
       color: #007a6e;
-      font-size: 20px;
-      margin: 15px 0 10px;
+      font-size: 18px;
+      margin: 12px 0 8px;
     }
 
     .doctor .details {
       display: none;
       background: white;
-      padding: 15px;
+      padding: 12px;
       border-top: 1px solid #b2dfdb;
-      font-size: 14px;
+      font-size: 13px;
       color: #4a5568;
       line-height: 1.5;
     }
@@ -306,7 +328,7 @@
       display: inline-block;
       background-color: #25D366;
       color: white;
-      padding: 12px 25px;
+      padding: 10px 20px;
       border-radius: 25px;
       text-decoration: none;
       font-weight: 600;
@@ -320,18 +342,26 @@
     /* Footer */
     footer {
       text-align: center;
-      margin-top: 50px;
-      font-size: 14px;
+      margin-top: 40px;
+      font-size: 13px;
       color: #718096;
     }
 
-    /* Responsive Design */
+    /* Mobile Responsive Design */
     @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
       aside {
         width: 100%;
-        height: auto;
-        position: relative;
-        padding: 20px;
+        height: 100vh;
+        transform: translateX(-100%);
+        padding-top: 60px;
+      }
+
+      aside.active {
+        transform: translateX(0);
       }
 
       main {
@@ -340,25 +370,56 @@
       }
 
       .hero {
-        padding: 40px 20px;
+        padding: 30px 15px;
       }
 
       .hero h2 {
-        font-size: 28px;
+        font-size: 24px;
       }
 
       .hero p {
-        font-size: 16px;
+        font-size: 14px;
+      }
+
+      .hero a {
+        padding: 8px 20px;
+        font-size: 14px;
+      }
+
+      .clinic-info, .services, .appointment {
+        padding: 20px;
+      }
+
+      .clinic-info h2, .services h2, .appointment h2 {
+        font-size: 22px;
       }
 
       .doctors {
         grid-template-columns: 1fr;
       }
+
+      .doctor img {
+        height: 140px;
+      }
+
+      .doctor h3 {
+        font-size: 16px;
+      }
+
+      .doctor .details {
+        font-size: 12px;
+      }
+
+      input, select, button {
+        font-size: 13px;
+        padding: 8px;
+      }
     }
   </style>
 </head>
 <body>
-  <aside>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+  <aside id="sidebar">
     <h1>Sanare</h1>
     <nav>
       <a href="#" class="active" onclick="showSection('home')">🏥 О клинике</a>
@@ -372,6 +433,7 @@
     <section id="home" class="hero">
       <h2>Добро пожаловать в клинику «Sanare»</h2>
       <p>Современный медицинский центр в городе Семей, предоставляющий высококачественные услуги для вашего здоровья.</p>
+      <a href="https://wa.me/77758202327" target="_blank">Связаться с нами</a>
     </section>
 
     <!-- Clinic Info -->
@@ -426,27 +488,27 @@
 
       <div class="doctors">
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="пед.jpeg" alt="Педиатр">
+          <img src="https://img.freepik.com/free-photo/female-pediatrician-smiling_23-2149183701.jpg" alt="Педиатр">
           <h3>Айгуль Тлеуханова</h3>
           <div class="details">Педиатр с 8-летним опытом. Специализируется на лечении и профилактике детских заболеваний, уделяет внимание эмоциональному состоянию ребёнка.</div>
         </div>
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="отолар.jpg" alt="ЛОР">
+          <img src="https://img.freepik.com/free-photo/ent-doctor-holding-otoscope_23-2149337633.jpg" alt="ЛОР">
           <h3>Ерлан Мухамедов</h3>
           <div class="details">Врач-отоларинголог с 10-летней практикой. Диагностика и лечение заболеваний уха, горла и носа. Использует современные эндоскопические методы.</div>
         </div>
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="кардио.jpeg" alt="Кардиолог">
+          <img src="https://img.freepik.com/free-photo/cardiologist-with-stethoscope_23-2148978271.jpg" alt="Кардиолог">
           <h3>Сауле Касымова</h3>
           <div class="details">Кардиолог, кандидат медицинских наук. Занимается профилактикой и лечением сердечно-сосудистых заболеваний, проводит ЭКГ и стресс-тесты.</div>
         </div>
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="терап.jpeg" alt="Терапевт">
+          <img src="https://img.freepik.com/free-photo/portrait-smiling-doctor-office_23-2147846662.jpg" alt="Терапевт">
           <h3>Азамат Алиев</h3>
           <div class="details">Терапевт общей практики. Ведёт приём пациентов с различными заболеваниями, подбирает индивидуальные программы лечения.</div>
         </div>
         <div class="doctor" onclick="toggleDoctor(this)">
-          <img src="стомат.jpeg" alt="Стоматолог">
+          <img src="https://img.freepik.com/free-photo/dentist-office-with-female-doctor_23-2148970643.jpg" alt="Стоматолог">
           <h3>Мария Иваненко</h3>
           <div class="details">Стоматолог. Занимается лечением и эстетической реставрацией зубов, профессиональной чисткой и профилактикой кариеса.</div>
         </div>
@@ -465,24 +527,25 @@
     });
 
     function showSection(id) {
-      // Remove active class from all nav links
       document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
-      
-      // Add active class to clicked link
       document.querySelector(`nav a[onclick="showSection('${id}')"]`).classList.add('active');
-      
-      // Hide all sections
       document.querySelectorAll('main section').forEach(section => {
         section.style.display = 'none';
       });
-      
-      // Show the selected section
       if (id === 'home') {
         document.querySelector('.hero').style.display = 'block';
         document.querySelector('.clinic-info').style.display = 'block';
       } else {
         document.getElementById(id).style.display = 'block';
       }
+      // Close sidebar on mobile after section selection
+      if (window.innerWidth <= 768) {
+        document.getElementById('sidebar').classList.remove('active');
+      }
+    }
+
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('active');
     }
 
     function toggleDoctor(card) {
